@@ -16,6 +16,8 @@ def extract_voting_power_per_pool(
 
     Returns voting choices calculated in a form
     """
+    if not voters or not scores:
+        return
     # First, map both dataset's wallets to have checksummed addresses
     voters_checksummed = {
         Web3.toChecksumAddress(wallet): choices for wallet, choices in voters.items()
