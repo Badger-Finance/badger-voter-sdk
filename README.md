@@ -9,6 +9,10 @@ This is the library for shared code that is used in autovoters, such as cvx auto
 
 ## List of functional modules:
 
+## Utilities
+
+--- 
+
 ### Get web3 instance
 
 ```python
@@ -37,4 +41,36 @@ Preconfigured rich logger to be shared across voting bots projects
 from badger_voter_sdk.rich_logger import logger
 
 logger.info()
+```
+
+## Snapshot and data collectors
+
+### Get all voters for snapshot
+
+```python
+from badger_voter_sdk.collectors.snapshot_collectors import get_voters
+
+voters = get_voters(snapshot_id="some_snapshot_id")
+```
+
+### Get vlTOKEN amounts per wallet voted for given snapshot round
+
+```python
+from badger_voter_sdk.collectors.api_collectors import get_scores
+
+scores = get_scores(
+    "aurafinance.eth", "1", "<SNAPSHOT_ID>",
+    ["<ADDRESS1>"],
+    [{'name': "erc20-votes", 'network': "1", 'params': {
+        'symbol': "<vlTOKEN>", 'address': "<STRATEGY_ADDR>"}}]
+)
+```
+
+### Get voting choices with voting power
+You need to combine two previous functions outputs:
+
+```python
+from badger_voter_sdk.collectors.data_processors import extract_voting_power_per_pool
+
+choices_with_votes = extract_voting_power_per_pool(voters={"<wallet>": {"1": 123}}, scores={"<wallet>": 123333.1})
 ```

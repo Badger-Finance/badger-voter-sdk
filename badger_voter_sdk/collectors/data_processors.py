@@ -14,7 +14,7 @@ def extract_voting_power_per_pool(
     1. voters - has weighed votes per wallet
     2. scores - has data about vlTOKEN voted by wallet
 
-    Returns voting choices calculated in a form
+    Returns voting choices calculated in a form {"1": Decimal(123123.04), ...}
     """
     if not voters or not scores:
         return
