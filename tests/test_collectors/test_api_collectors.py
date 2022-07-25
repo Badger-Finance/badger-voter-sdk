@@ -27,7 +27,7 @@ def test_get_scores_happy():
         [{'name': "erc20-votes", 'network': "1", 'params': {
             'symbol': "vlAURA", 'address': "0x3Fa73f1E5d8A792C80F426fc8F84FBF7Ce9bBCAC"}}]
     )
-    assert scores[0][BADGER_VOTER_ADDRESS] == test_amount
+    assert scores[BADGER_VOTER_ADDRESS] == test_amount
 
 
 @responses.activate

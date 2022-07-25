@@ -24,4 +24,4 @@ def get_scores(
     if not response.ok:
         logger.error(f"Cannot fetch scores for snapshot: {snapshot_id}")
         return None
-    return response.json()['result']['scores']
+    return response.json()['result']['scores'][0]
