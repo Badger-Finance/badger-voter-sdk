@@ -32,6 +32,6 @@ def extract_voting_power_per_pool(
         all_together = Decimal(sum(voter_choices.values()))
         for pool_choice, weight in voter_choices.items():
             pool_votes[pool_choice] += (
-                    (Decimal(weight) / all_together) * Decimal(amount_of_vltoken_voted)
+                (Decimal(weight) / all_together) * Decimal(amount_of_vltoken_voted)
             )
     return pool_votes
