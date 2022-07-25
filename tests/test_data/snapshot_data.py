@@ -802,4 +802,3 @@ STALE_VOTES_SNAPSHOT = {
         }
     ]
 }
-
