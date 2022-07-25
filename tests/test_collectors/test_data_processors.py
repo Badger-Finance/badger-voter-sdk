@@ -43,6 +43,7 @@ def test_extract_voting_power_per_pool_happy():
 def test_extract_voting_power_per_pool_precalc_equal():
     equal_part = 100.00 / 3
     total_vl_tokens = 430961.9341128137
+    expected = Decimal(equal_part / 100 * total_vl_tokens)
     pools_totals = extract_voting_power_per_pool(
         {
             BADGER_VOTER_ADDRESS: {'1': equal_part, '2': equal_part, '3': equal_part}
@@ -51,7 +52,7 @@ def test_extract_voting_power_per_pool_precalc_equal():
             BADGER_VOTER_ADDRESS: 430961.9341128137
         })
     for _, votes in pools_totals.items():
-        assert votes == pytest.approx(Decimal(equal_part / 100 * total_vl_tokens))
+        assert votes == pytest.approx(expected)
 
 
 def test_extract_voting_power_per_pool_empty():
