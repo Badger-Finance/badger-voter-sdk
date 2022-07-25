@@ -30,6 +30,8 @@ def extract_voting_power_per_pool(
         voter_choices = voters_checksummed[wallet]
         # All together - represents 100% as it's a vote weight
         all_together = Decimal(sum(voter_choices.values()))
+        if all_together == Decimal(0):
+            continue
         for pool_choice, weight in voter_choices.items():
             pool_votes[pool_choice] += (
                 (Decimal(weight) / all_together) * Decimal(amount_of_vltoken_voted)

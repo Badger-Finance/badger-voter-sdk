@@ -37,7 +37,7 @@ def get_voters(snapshot_id: str) -> Optional[Dict]:
             first=limit, skip=offset, snapshot_id=snapshot_id))
         )
         offset += limit
-        if not result or not result.get("votes"):
+        if not result or not result["votes"]:
             break
         for vote in result['votes']:
             voters[vote['voter']] = vote.get('choice')
