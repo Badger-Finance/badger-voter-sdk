@@ -2,6 +2,7 @@ from decimal import Decimal
 
 import pytest
 
+from badger_voter_sdk.collectors.data_processors import extract_voting_power_per_eoa
 from badger_voter_sdk.collectors.data_processors import extract_voting_power_per_pool
 from badger_voter_sdk.constants import BADGER_VOTER_ADDRESS
 from tests.test_data.datasets import SCORES_DATASET
@@ -57,3 +58,23 @@ def test_extract_voting_power_per_pool_precalc_equal():
 
 def test_extract_voting_power_per_pool_empty():
     assert not extract_voting_power_per_pool(VOTERS_DATASET, {})
+
+
+def test_extract_voting_power_per_eoa_happy():
+    # Badger delegate EOA
+    target_eoa = "0x14F83fF95D4Ec5E8812DDf42DA1232b0ba1015e6"
+    eoa_totals = extract_voting_power_per_eoa(
+        "0x14F83fF95D4Ec5E8812DDf42DA1232b0ba1015e6", VOTERS_DATASET, SCORES_DATASET
+    )
+    assert eoa_totals == {'10': Decimal('146613.2499851792041870759703'),
+                          '38': Decimal('173505.2746738187515119612030'),
+                          '46': Decimal('74168.54886081522625484683233'),
+                          '72': Decimal('36674.86059300043744031972825')}
+    assert sum(eoa_totals.values()) == pytest.approx(Decimal(SCORES_DATASET[target_eoa]))
+
+
+def test_extract_voting_power_per_eoa_empty():
+    target_eoa = "0x14F83fF95D4Ec5E8812DDf42DA1232b0ba1015e6"
+    assert not extract_voting_power_per_eoa(
+        "0x14F83fF95D4Ec5E8812DDf42DA1232b0ba1015e6", VOTERS_DATASET, {}
+    )
