@@ -56,7 +56,7 @@ def extract_voting_power_per_eoa(
         Web3.toChecksumAddress(wallet): choices for wallet, choices in voters.items()
     }
     scores_checksummed = {
-        Web3.toChecksumAddress(wallet): totals for wallet, totals in scores.items()
+        Web3.toChecksumAddress(wallet): Decimal(totals) for wallet, totals in scores.items()
     }
     eoa_checksummed = Web3.toChecksumAddress(target_wallet)
     amount_of_vltoken_voted = scores_checksummed.get(eoa_checksummed)
@@ -68,6 +68,6 @@ def extract_voting_power_per_eoa(
     if all_together == Decimal(0):
         return
     return {
-        pool_choice: (Decimal(weight) / all_together) * Decimal(amount_of_vltoken_voted)
+        pool_choice: (Decimal(weight) / all_together) * amount_of_vltoken_voted
         for pool_choice, weight in voter_choices.items()
     }
