@@ -1,3 +1,4 @@
+from copy import deepcopy
 from decimal import Decimal
 
 import pytest
@@ -71,6 +72,15 @@ def test_extract_voting_power_per_eoa_happy():
                           '46': Decimal('74168.54886081522625484683233'),
                           '72': Decimal('36674.86059300043744031972825')}
     assert sum(eoa_totals.values()) == pytest.approx(Decimal(SCORES_DATASET[target_eoa]))
+
+
+def test_extract_voting_power_per_eoa_no_scores():
+    target_eoa = "0x14F83fF95D4Ec5E8812DDf42DA1232b0ba1015e6"
+    scores = deepcopy(SCORES_DATASET)
+    scores.pop(target_eoa)
+    assert not extract_voting_power_per_eoa(
+        target_eoa, VOTERS_DATASET, scores
+    )
 
 
 def test_extract_voting_power_per_eoa_empty():
