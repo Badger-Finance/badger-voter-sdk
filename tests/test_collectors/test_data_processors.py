@@ -64,7 +64,7 @@ def test_extract_voting_power_per_eoa_happy():
     # Badger delegate EOA
     target_eoa = "0x14F83fF95D4Ec5E8812DDf42DA1232b0ba1015e6"
     eoa_totals = extract_voting_power_per_eoa(
-        "0x14F83fF95D4Ec5E8812DDf42DA1232b0ba1015e6", VOTERS_DATASET, SCORES_DATASET
+        target_eoa, VOTERS_DATASET, SCORES_DATASET
     )
     assert eoa_totals == {'10': Decimal('146613.2499851792041870759703'),
                           '38': Decimal('173505.2746738187515119612030'),
@@ -76,5 +76,5 @@ def test_extract_voting_power_per_eoa_happy():
 def test_extract_voting_power_per_eoa_empty():
     target_eoa = "0x14F83fF95D4Ec5E8812DDf42DA1232b0ba1015e6"
     assert not extract_voting_power_per_eoa(
-        "0x14F83fF95D4Ec5E8812DDf42DA1232b0ba1015e6", VOTERS_DATASET, {}
+        target_eoa, VOTERS_DATASET, {}
     )
