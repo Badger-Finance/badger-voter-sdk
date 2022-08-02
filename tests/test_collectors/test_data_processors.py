@@ -83,6 +83,15 @@ def test_extract_voting_power_per_eoa_no_scores():
     )
 
 
+def test_extract_voting_power_per_eoa_no_voters_choices():
+    target_eoa = "0x14F83fF95D4Ec5E8812DDf42DA1232b0ba1015e6"
+    voters = deepcopy(VOTERS_DATASET)
+    voters[target_eoa] = {'1': 0.0}
+    assert not extract_voting_power_per_eoa(
+        target_eoa, voters, SCORES_DATASET
+    )
+
+
 def test_extract_voting_power_per_eoa_empty():
     target_eoa = "0x14F83fF95D4Ec5E8812DDf42DA1232b0ba1015e6"
     assert not extract_voting_power_per_eoa(
