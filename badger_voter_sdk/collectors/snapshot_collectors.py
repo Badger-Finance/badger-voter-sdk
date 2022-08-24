@@ -142,8 +142,8 @@ def get_gauge_weight_snapshot(web3: Web3, space: str) -> Optional[Dict]:
     Using title re match and some pool heuristics, tries to get current active
     gauge voting proposal. If not found, returns None
     :params:
-        - web3: Web3 instance with valid node url
-        - space: snapshot voting space, like aurafinance.eth
+    - web3: Web3 instance with valid node url
+    - space: snapshot voting space, like aurafinance.eth
     """
     client = make_gql_client(SNAPSHOT_GQL_API_URL)
     limit = 100
