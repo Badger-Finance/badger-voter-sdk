@@ -24,6 +24,42 @@ GET_VOTES_Q = ("""
 """)
 
 
+GET_SINGLE_PROPOSAL_Q = lambda snapshot_id: gql(f"""
+query {{
+  proposals (
+    first: 1,
+    skip: 0,
+    where: {{
+      network_in: ["1"]
+      id: "{snapshot_id}"
+    }},
+    orderBy: "created",
+    orderDirection: desc
+  ) {{
+    id
+    title
+    body
+    start
+    end
+    snapshot
+    choices
+    strategies {{
+      name
+      network
+      params
+    }}
+    network
+    state
+    author
+    space {{
+      id
+      name
+    }}
+  }}
+}}
+""")
+
+
 def get_voters(snapshot_id: str) -> Optional[Dict]:
     """
     Get all voters on given snapshot
@@ -42,3 +78,18 @@ def get_voters(snapshot_id: str) -> Optional[Dict]:
         for vote in result['votes']:
             voters[vote['voter']] = vote.get('choice')
     return voters
+
+
+def get_snapshot_by_id(snapshot_id: str) -> Optional[Dict]:
+    """
+    Get single snapshot by id
+    """
+    client = make_gql_client(SNAPSHOT_GQL_API_URL)
+    result = client.execute(GET_SINGLE_PROPOSAL_Q(snapshot_id))
+    if not result or not result.get("proposals"):
+        return
+    target_snapshot = None
+    for proposal in result['proposals']:
+        if proposal['id'] == snapshot_id:
+            target_snapshot = proposal
+    return target_snapshot

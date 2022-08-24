@@ -802,3 +802,40 @@ STALE_VOTES_SNAPSHOT = {
         }
     ]
 }
+
+SNAPSHOT_DATA_BY_ID = {
+    'proposals': [
+        {'id': '0x632726577e9c186a8827311b8702dcfd98f26376237b9715e64eafa61d6d7672',
+         'title': 'Gauge Weight for Week of 18th August 2022',
+         'body': 'Please read gauge voting rules before voting:',
+         'start': 1660788000, 'end': 1661220000, 'snapshot': '15362300',
+         'choices': ['veBAL', '50/50 AURA/WETH', 'Stable auraBAL/B-80BAL-20WETH',
+                     'Stable DAI/USDC/USDT', '50/50 SNX/WETH', '60/40 WETH/DAI', '50/50 YFI/WETH',
+                     'MetaStable rETH/WETH', '80/20 D2D/USDC', 'MetaStable wstETH/WETH',
+                     '80/20 VITA/WETH', '50/50 NOTE/WETH', 'bb-a-USDT/bb-a-DAI/bb-a-USDC',
+                     '50/50 D2D/BAL', '70/30 WETH/FEI', '50/50 USDC/WETH', '80/20 TCR/DAI',
+                     '50/50 MATIC/WETH', '50/50 WBTC/WETH', '50/50 VITA/WETH', '80/20 LDO/WETH',
+                     '50/50 LINK/WETH', '50/50 REN/WETH', '50/50 COMP/WETH', '80/20 GNO/WETH',
+                     'Stable WBTC/renBTC/sBTC', '80/20 HAUS/WETH', '50/50 GNO/COW',
+                     '50/50 COW/WETH',
+                     '50/25/25 OHM/DAI/WETH', '80/20 FDT/WETH', '80/20 BADGER/WBTC',
+                     '80/20 NOTE/WETH',
+                     '80/20 WNCG/WETH', '80/20 PAL/USDC', '50/50 DFX/WETH', 'Stable FIAT/DAI/USDC',
+                     '33/33/33 graviAURA/auraBAL/WETH', '80/20 TEMPLE/DAI', '50/50 FOLD/WETH',
+                     'a-33/33/33 DPX/RDPX/WETH', 'a-33/33/33 WBTC/WETH/USDC',
+                     'a-Stable VST/DAI/USDT/USDC', 'a-80/20 PICKLE/WETH', 'a-Stable MAI/USDT/USDC',
+                     'a-50/50 VSTA/WETH', 'a-60/40 BAL/WETH', 'a-80/20 CRE8R/WETH',
+                     'a-50/50 MAGIC/USDC', 'p-25/25/25/25 WMATIC/USDC/WETH/BAL',
+                     'p-33/33/33 WBTC/USDC/WETH', 'p-50/50 BAL/TEL',
+                     'p-Stable USDC/DAI/miMATIC/USDT',
+                     'p-MetaStable WMATIC/stMATIC', 'p-Stable WBTC/renBTC', 'p-50/50 WBTC/WETH',
+                     'p-20/20/20/20/20 USDC/LINK/WETH/BAL/AAVE', 'p-60/20/20 TEL/USDC/BAL',
+                     'p-25/25/25/25 LINK/WETH/BAL/AAVE', 'p-MetaStable WMATIC/MaticX',
+                     'p-40/40/20 TEL/DFX/USDC', 'p-50/50 RBW/WETH', 'o-MetaStable WETH/rETH'],
+         'strategies': [{'name': 'erc20-votes-with-override', 'network': '1',
+                         'params': {'symbol': 'vlAURA',
+                                    'address': '0x3fa73f1e5d8a792c80f426fc8f84fbf7ce9bbcac',
+                                    'decimals': 18, 'isSnapshotDelegatedScore': False,
+                                    'includeSnapshotDelegations': False}}], 'network': '1',
+         'state': 'closed', 'author': '0x3000d9B2c0E6B9F97f30ABE379eaAa8A85A04afC',
+         'space': {'id': 'aurafinance.eth', 'name': 'Aura Finance'}}]}
