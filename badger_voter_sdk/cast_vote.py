@@ -158,7 +158,7 @@ def cast_single_choice_vote(
 
 
 def _vote(
-        snapshot_type: str, payload: Dict, secret_id: str, secret_key: str, role_arn: str,
+        snapshot_type: SnapshotType, payload: Dict, secret_id: str, secret_key: str, role_arn: str,
         web3: Web3,
 ) -> None:
     private_key = get_secret(

@@ -37,7 +37,7 @@ def _encode_structured_data(
     )
 
 
-def sign_message(web3: Web3, snapshot_type: str, message: Dict, private_key: str) -> str:
+def sign_message(web3: Web3, snapshot_type: SnapshotType, message: Dict, private_key: str) -> str:
     """
     EIP712 message signing
     """
