@@ -54,6 +54,36 @@ SNAPSHOT_TYPES_2 = {
     ],
 }
 
+SNAPSHOT_SINGLE_CHOICE_TYPES = {
+    'EIP712Domain': [
+        {'name': 'name', 'type': 'string'},
+        {'name': 'version', 'type': 'string'},
+    ],
+    "Vote": [
+        {'name': 'from', 'type': 'address'},
+        {'name': 'space', 'type': 'string'},
+        {'name': 'timestamp', 'type': 'uint64'},
+        {'name': 'proposal', 'type': 'string'},
+        {'name': 'choice', 'type': 'uint32'},
+        {'name': 'metadata', 'type': 'string'}
+    ],
+}
+
+SNAPSHOT_SINGLE_CHOICE_TYPES_2 = {
+    'EIP712Domain': [
+        {'name': 'name', 'type': 'string'},
+        {'name': 'version', 'type': 'string'},
+    ],
+    "Vote": [
+        {'name': 'from', 'type': 'address'},
+        {'name': 'space', 'type': 'string'},
+        {'name': 'timestamp', 'type': 'uint64'},
+        {'name': 'proposal', 'type': 'bytes32'},
+        {'name': 'choice', 'type': 'uint32'},
+        {'name': 'metadata', 'type': 'string'}
+    ],
+}
+
 
 SNAPSHOT_DOMAIN = {
     'name': "snapshot",
@@ -83,9 +113,42 @@ def cast_weighed_vote(
             'timestamp': int(time.time()),
             'proposal': (
                 Web3.toBytes(hexstr=snapshot_id) if snapshot_type == SnapshotType.TYPE_2
-                else snapshot_id,
+                else snapshot_id
             ),
             'choice': json.dumps(votes, use_decimal=True),
+            'metadata': json.dumps({}),
+        },
+        "primaryType": 'Vote',
+        "types": types,
+    }
+    _vote(snapshot_type, payload, secret_id, secret_key, role_arn, web3)
+
+
+def cast_single_choice_vote(
+        choice: int, snapshot_id: str, web3: Web3, space: str,
+        secret_id: str, secret_key: str, role_arn: str
+) -> None:
+    """
+    Single choice voting function needed for voting on gauges etc
+    """
+    snapshot_type = (
+        SnapshotType.TYPE_2.value if snapshot_id.startswith('0x') else SnapshotType.TYPE_1.value
+    )
+    if snapshot_type == SnapshotType.TYPE_2:
+        types = deepcopy(SNAPSHOT_SINGLE_CHOICE_TYPES_2)
+    else:
+        types = deepcopy(SNAPSHOT_SINGLE_CHOICE_TYPES)
+    payload = {
+        "domain": SNAPSHOT_DOMAIN,
+        "message": {
+            'from': Web3.toChecksumAddress(BADGER_VOTER_ADDRESS),
+            'space': space,
+            'timestamp': int(time.time()),
+            'proposal': (
+                Web3.toBytes(hexstr=snapshot_id) if snapshot_type == SnapshotType.TYPE_2
+                else snapshot_id
+            ),
+            'choice': int(choice),
             'metadata': json.dumps({}),
         },
         "primaryType": 'Vote',
