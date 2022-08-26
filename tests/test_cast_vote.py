@@ -55,7 +55,13 @@ def test_cast_vote_happy(mocker, voting_executable, snapshot):
     'voting_executable',
     [cast_weighed_vote, cast_single_choice_vote]
 )
-def test_cast_vote_no_pk(mocker, voting_executable):
+@pytest.mark.parametrize(
+    'snapshot',
+    # Normal snapshot; snapshot id as bytes
+    ["bafkreie7zi37m4uct4u6odwfddudgm7whkkv74msxffuzztgxeaz7om7d4",
+     "0x2445e521270db2ef0c3f6fae8903c5a753d48e112928507ca1d479a3b7b90bfd"]
+)
+def test_cast_vote_no_pk(mocker, voting_executable, snapshot):
     """
     When no pk secret - should raise exc
     """
@@ -75,11 +81,11 @@ def test_cast_vote_no_pk(mocker, voting_executable):
     with pytest.raises(FailedToVoteException) as exc:
         voting_executable(
             {'1': 1},
-            snapshot_id="123", space="cvx.eth",
+            snapshot_id=snapshot, space="cvx.eth",
             web3=MagicMock(), secret_id="", secret_key="", role_arn="",
         ) if voting_executable is cast_weighed_vote else voting_executable(
             1,
-            snapshot_id="123", space="cvx.eth",
+            snapshot_id=snapshot, space="cvx.eth",
             web3=MagicMock(), secret_id="", secret_key="", role_arn="",
         )
     assert str(exc.value) == "Can't fetch private key"
@@ -90,7 +96,13 @@ def test_cast_vote_no_pk(mocker, voting_executable):
     'voting_executable',
     [cast_weighed_vote, cast_single_choice_vote]
 )
-def test_cast_vote_error(mocker, voting_executable):
+@pytest.mark.parametrize(
+    'snapshot',
+    # Normal snapshot; snapshot id as bytes
+    ["bafkreie7zi37m4uct4u6odwfddudgm7whkkv74msxffuzztgxeaz7om7d4",
+     "0x2445e521270db2ef0c3f6fae8903c5a753d48e112928507ca1d479a3b7b90bfd"]
+)
+def test_cast_vote_error(mocker, voting_executable, snapshot):
     """
     When vote didn't happen - raise exc
     """
@@ -110,11 +122,11 @@ def test_cast_vote_error(mocker, voting_executable):
     with pytest.raises(FailedToVoteException) as exc:
         voting_executable(
             {'1': 1},
-            snapshot_id="123", space="cvx.eth",
+            snapshot_id=snapshot, space="cvx.eth",
             web3=MagicMock(), secret_id="", secret_key="", role_arn="",
         ) if voting_executable is cast_weighed_vote else voting_executable(
             1,
-            snapshot_id="123", space="cvx.eth",
+            snapshot_id=snapshot, space="cvx.eth",
             web3=MagicMock(), secret_id="", secret_key="", role_arn="",
         )
     assert str(exc.value) == "Voting failed on Snapshot. Error: {}"
