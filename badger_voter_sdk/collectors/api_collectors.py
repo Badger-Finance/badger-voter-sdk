@@ -8,7 +8,7 @@ import requests
 from badger_voter_sdk.constants import BINANCE_KLINES_URL
 from badger_voter_sdk.constants import COWSWAP_TRADES_URL
 from badger_voter_sdk.constants import SNAPSHOT_SCORES_URL
-from badger_voter_sdk.rich_logger import logger
+from badger_voter_sdk.json_logger import logger
 
 MINUTE_INTERVAL = 60  # in seconds
 BINANCE_TIMESTAMP_MULTIPLIER = 1000

@@ -34,11 +34,11 @@ secret = get_secret(secret_id="SecretId", secret_key="SecretKey")
 ```
 
 
-### Rich logger
-Preconfigured rich logger to be shared across voting bots projects
+### Json logger
+Preconfigured json logger to be shared across voting bots projects
 
 ```python
-from badger_voter_sdk.rich_logger import logger
+from badger_voter_sdk.json_logger import logger
 
 logger.info()
 ```
