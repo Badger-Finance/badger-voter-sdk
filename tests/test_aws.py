@@ -6,6 +6,7 @@ from moto import mock_sts
 
 from badger_voter_sdk.aws import get_secret
 from badger_voter_sdk.constants import REGION
+from badger_voter_sdk.json_logger import logger
 
 
 @mock_secretsmanager

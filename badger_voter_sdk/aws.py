@@ -6,7 +6,7 @@ import simplejson as json
 from botocore.errorfactory import ClientError
 
 from badger_voter_sdk.constants import REGION
-from badger_voter_sdk.rich_logger import logger
+from badger_voter_sdk.json_logger import logger
 
 VOTE_BUCKET_NAME = "badger-voting-bot"
 

@@ -6,7 +6,7 @@ import requests
 import simplejson as json
 from badger_voter_sdk.aws import get_secret
 from badger_voter_sdk.constants import SnapshotType
-from badger_voter_sdk.rich_logger import logger
+from badger_voter_sdk.json_logger import logger
 from web3 import Web3
 
 from badger_voter_sdk.constants import BADGER_VOTER_ADDRESS
