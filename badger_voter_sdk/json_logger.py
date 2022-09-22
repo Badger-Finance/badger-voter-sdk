@@ -15,7 +15,7 @@ class CustomJsonFormatter(jsonlogger.JsonFormatter):
         if log_record.get('level'):
             log_record['logger_severity'] = log_record['level'].upper()
         else:
-            log_record['logger_severity'] = record.levelname
+            log_record['logger_severity'] = getattr(record, 'levelname', "NOTSET")
 
 
 log_handler = logging.StreamHandler()
