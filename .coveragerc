@@ -1,5 +1,5 @@
 [run]
-omit = utils/constants.py
+omit = json_logger.py
 
 [report]
 show_missing = True
