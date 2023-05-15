@@ -1,7 +1,7 @@
 # Secrets settings
 from enum import Enum
 
-ETHNODEURL_SECRET_ID = "quiknode/eth-node-url"
+ETHNODEURL_SECRET_ID = "autovoter/web3_ethereum_mainnet_alchemy_api_key"
 ETHNODEURL_SECRET_KEY = "NODE_URL"
 REGION = "us-west-1"
 
